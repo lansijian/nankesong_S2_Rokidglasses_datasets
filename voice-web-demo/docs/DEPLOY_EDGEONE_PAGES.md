@@ -7,14 +7,14 @@
 这套站点不是纯静态 HTML。
 
 - 前端页面：`index.html`、`styles.css`、`app.js`
-- 接口层：`node-functions/api/chat.js`、`node-functions/api/health.js`
+- 接口层：`cloud-functions/api/chat.js`、`cloud-functions/api/health.js`
 - 知识库构建：`scripts/build-knowledge.mjs`
 
 也就是说，部署时需要：
 
 1. 托管静态页面
-2. 托管 `node-functions`
-3. 在构建阶段生成 `node-functions/_data/knowledge.json`
+2. 托管 `cloud-functions`
+3. 在构建阶段生成 `cloud-functions/_data/knowledge.json`
 4. 配好环境变量，让接口层能调用 DeepSeek
 
 ## 2. 本地测试
@@ -68,8 +68,8 @@ node scripts/build-knowledge.mjs
 这一套的核心思路是：
 
 - 页面文件直接从项目根目录发布
-- `node-functions/` 由 Pages 托管成函数
-- 构建命令负责把知识库文件生成到 `node-functions/_data/knowledge.json`
+- `cloud-functions/` 由 Pages 托管成函数
+- 构建命令负责把知识库文件生成到 `cloud-functions/_data/knowledge.json`
 
 ### 同仓库部署建议
 
@@ -111,7 +111,7 @@ OPENAI_MODEL=deepseek-v4-flash
 
 ### 第一层：后端 prompt
 
-在 `node-functions/api/chat.js` 里：
+在 `cloud-functions/api/chat.js` 里：
 
 - 高情商模式继承你们原 `SKILL` 的核心规则：
   - 先理解，再建议
@@ -135,7 +135,7 @@ OPENAI_MODEL=deepseek-v4-flash
 
 生成一个轻量索引：
 
-- `node-functions/_data/knowledge.json`
+- `cloud-functions/_data/knowledge.json`
 
 每次对话前，后端会先按用户输入做召回，再把相关片段和对应模式的 prompt 一起发给模型。
 

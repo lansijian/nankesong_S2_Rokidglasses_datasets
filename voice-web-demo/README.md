@@ -14,7 +14,7 @@
 - 语音输入：浏览器原生语音识别。
 - 语音播报：浏览器原生语音合成。
 - 数据集：从 `high-eq-dataset/` 和 `roast-dataset/` 生成轻量知识索引。
-- 部署形态：静态前端 + EdgeOne Pages `node-functions`。
+- 部署形态：静态前端 + EdgeOne Pages `cloud-functions`。
 
 ## 目录
 
@@ -23,7 +23,7 @@ voice-web-demo/
   index.html
   styles.css
   app.js
-  node-functions/
+  cloud-functions/
     api/
       chat.js
       health.js
@@ -59,7 +59,7 @@ npm run dev
 
 然后访问 `http://localhost:4173`。
 
-这个本地服务会自动读取 `.env.local` / `.env`，并把 `node-functions` 一起跑起来，适合直接联调 DeepSeek。
+这个本地服务会自动读取 `.env.local` / `.env`，并把 `cloud-functions` 一起跑起来，适合直接联调 DeepSeek。
 如果 `4173` 已被占用，它会自动切到下一个空闲端口，终端会打印实际地址。
 
 ## EdgeOne Pages 部署
@@ -101,7 +101,7 @@ OPENAI_MODEL=deepseek-v4-flash
 ## 这版怎么使用 SKILL 和知识库
 
 - 前端只负责聊天界面、语音识别和发送文本。
-- `node-functions/api/chat.js` 里放的是两套核心人格 prompt，对应你们原来的两份 `SKILL.md`。
+- `cloud-functions/api/chat.js` 里放的是两套核心人格 prompt，对应你们原来的两份 `SKILL.md`。
 - `scripts/build-knowledge.mjs` 会从 `high-eq-dataset/` 和 `roast-dataset/` 生成轻量知识索引。
 - 每次对话都会先从知识索引里召回最相关的片段，再和对应模式的 prompt 一起发给模型。
 

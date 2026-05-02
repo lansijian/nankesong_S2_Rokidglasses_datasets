@@ -3,8 +3,8 @@ import { promises as fs } from "node:fs";
 import net from "node:net";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { onRequestGet as onHealthGet } from "./node-functions/api/health.js";
-import { onRequestGet as onChatGet, onRequestPost as onChatPost } from "./node-functions/api/chat.js";
+import { onRequestGet as onHealthGet } from "./cloud-functions/api/health.js";
+import { onRequestGet as onChatGet, onRequestPost as onChatPost } from "./cloud-functions/api/chat.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const preferredPort = Number(process.env.PORT || 4173);

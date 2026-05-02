@@ -6,7 +6,7 @@
 
 为了兼容 Cloudflare Pages，这个项目现在同时保留了两套函数目录：
 
-- `node-functions/`：给本地开发和 EdgeOne 风格结构使用
+- `cloud-functions/`：给本地开发和 EdgeOne 风格结构使用
 - `functions/`：给 Cloudflare Pages 使用
 
 你不需要手动改代码，只要在 Cloudflare Pages 里部署 `voice-web-demo/` 子目录即可。
@@ -20,7 +20,7 @@
 - `app.js`
 - `scripts/build-knowledge.mjs`
 - `functions/`
-- `node-functions/`
+- `cloud-functions/`
 - `package.json`
 
 不要提交：
@@ -39,7 +39,7 @@ node scripts/build-knowledge.mjs
 
 这个脚本会生成两份知识库：
 
-- `node-functions/_data/knowledge.json`
+- `cloud-functions/_data/knowledge.json`
 - `functions/_data/knowledge.js`
 
 Cloudflare Pages 运行时会使用 `functions/_data/knowledge.js`。

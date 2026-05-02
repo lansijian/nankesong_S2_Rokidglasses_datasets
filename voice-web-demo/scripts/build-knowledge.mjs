@@ -2,7 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(process.cwd(), "..");
-const outputDir = path.resolve(process.cwd(), "node-functions", "_data");
+const outputDir = path.resolve(process.cwd(), "cloud-functions", "_data");
 const outputFile = path.join(outputDir, "knowledge.json");
 const cloudflareOutputDir = path.resolve(process.cwd(), "functions", "_data");
 const cloudflareOutputFile = path.join(cloudflareOutputDir, "knowledge.js");
