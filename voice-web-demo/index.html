@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>南客松 S2 语音体验站</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="header-title-group">
+          <p class="header-eyebrow">NanKeSong S2</p>
+          <h1>语音体验站</h1>
+        </div>
+        <div class="header-actions">
+          <div class="mode-switch" role="tablist" aria-label="模式选择">
+            <button class="mode-button is-active" data-mode="high-eq" id="modeHighEq">高情商</button>
+            <button class="mode-button" data-mode="roast" id="modeRoast">怼人</button>
+          </div>
+          <span class="status-pill" id="networkStatus">待机中</span>
+        </div>
+      </header>
+
+      <main class="chat-shell">
+        <section id="chatList" class="chat-list" aria-label="聊天记录">
+        </section>
+      </main>
+
+      <section class="composer-dock">
+        <div class="dock-hint" id="voiceHint">点一下麦克风开始说话，再点一次结束。识别不准时也可以直接打字。</div>
+        <div class="composer-row">
+          <button class="mic-button" id="micButton" aria-label="开始语音输入">
+            <span class="mic-core"></span>
+          </button>
+          <label class="composer-box" for="textInput">
+            <textarea
+              id="textInput"
+              rows="1"
+              placeholder="给我一句能直接说出口的话"
+            ></textarea>
+          </label>
+          <button class="send-button" id="sendButton">发送</button>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+  </html>

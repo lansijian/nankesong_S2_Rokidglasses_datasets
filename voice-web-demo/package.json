@@ -1,0 +1,10 @@
+{
+  "name": "voice-web-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:knowledge": "node scripts/build-knowledge.mjs",
+    "dev": "node server.mjs"
+  }
+}

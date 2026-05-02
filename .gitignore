@@ -19,6 +19,8 @@ __pycache__/
 venv/
 .env
 .env.*
+!.env.example
+!**/.env.example
 
 # 临时与备份
 *.tmp

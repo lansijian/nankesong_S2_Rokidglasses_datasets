@@ -8,6 +8,7 @@
 |------|------|------------|
 | **高情商助手** | 基于单帧拍照的场景理解，输出得体、可执行的沟通话术与动作建议（职场 / 轻社交 / 宠物），支持地区语气个性化。 | `high-eq-dataset/` 文本语料；`skills/rokid-high-eq-assistant/SKILL.md` |
 | **怼人助手** | 在用户明确触发「怼他」类意图时，结合画面给出刻薄但**不含真正脏话**的反击话术（含安全与宠物边界）。 | `roast-dataset/` 文本语料；`skills/rokid-roast-assistant/SKILL.md` |
+| **网页体验站** | 面向没有眼镜的用户，提供手机端语音聊天式入口，复用两套 Skill 逻辑与知识库，适合部署到 EdgeOne Pages。 | `voice-web-demo/` |
 
 智能体侧通常还会对接：摄像头单帧（如 `notify_take_photo`）、多模态工作流（如灵珠）、眼镜角标静默显示、`get_context_param` / `recallKnowledge` 等；具体以各 Skill 内「工具关联」与「工作流」章节为准。
 
@@ -16,6 +17,13 @@
 ```
 .
 ├── README.md
+├── voice-web-demo/                    # 手机端语音体验网页（可单独部署）
+│   ├── index.html
+│   ├── app.js
+│   ├── styles.css
+│   ├── node-functions/
+│   ├── scripts/
+│   └── docs/
 ├── skills/                            # Agent Skill（独立于 .cursor）
 │   ├── rokid-high-eq-assistant/
 │   │   └── SKILL.md
@@ -67,6 +75,13 @@
 | `rokid-roast-assistant` | `rokid-roast-assistant` | 怼人眼镜军师：触发词、混搭方言风格、知识库分级、离线兜底、禁止项。 |
 
 在 Cursor 中可将本仓库作为项目打开并 `@` 引用对应 `SKILL.md`，或把 `skills/rokid-*` 复制/软链到 `.cursor/skills/`（或 `~/.cursor/skills/`）以便按内置 Skill 加载。
+
+## 网页部署
+
+如果你要把手机端网页体验站部署到 EdgeOne Pages，请直接使用同仓库里的 `voice-web-demo/` 子目录作为部署根目录。
+
+- 部署项目目录：`voice-web-demo/`
+- 详细文档：[`voice-web-demo/docs/DEPLOY_EDGEONE_PAGES.md`](voice-web-demo/docs/DEPLOY_EDGEONE_PAGES.md)
 
 ## 使用与合规提示
 
