@@ -1,0 +1,26 @@
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Editors / IDE
+*.swp
+*.swo
+*~
+.idea/
+
+# Python（若日后在仓库内跑脚本）
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+.env
+.env.*
+
+# 临时与备份
+*.tmp
+*.bak
+*.log
