@@ -4,6 +4,8 @@ import path from "node:path";
 const root = path.resolve(process.cwd(), "..");
 const outputDir = path.resolve(process.cwd(), "node-functions", "_data");
 const outputFile = path.join(outputDir, "knowledge.json");
+const cloudflareOutputDir = path.resolve(process.cwd(), "functions", "_data");
+const cloudflareOutputFile = path.join(cloudflareOutputDir, "knowledge.js");
 
 const highEqRoot = path.join(root, "high-eq-dataset");
 const roastRoot = path.join(root, "roast-dataset");
@@ -176,22 +178,27 @@ function dedupe(items, limit) {
 
 async function main() {
   const [highEq, roast] = await Promise.all([buildHighEq(), buildRoast()]);
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    counts: { highEq: highEq.length, roast: roast.length },
+    highEq,
+    roast
+  };
+
   await fs.mkdir(outputDir, { recursive: true });
+  await fs.mkdir(cloudflareOutputDir, { recursive: true });
   await fs.writeFile(
     outputFile,
-    JSON.stringify(
-      {
-        generatedAt: new Date().toISOString(),
-        counts: { highEq: highEq.length, roast: roast.length },
-        highEq,
-        roast
-      },
-      null,
-      2
-    ),
+    JSON.stringify(payload, null, 2),
+    "utf8"
+  );
+  await fs.writeFile(
+    cloudflareOutputFile,
+    `const knowledge = ${JSON.stringify(payload, null, 2)};\nexport default knowledge;\n`,
     "utf8"
   );
   console.log(`Knowledge written to ${outputFile}`);
+  console.log(`Knowledge written to ${cloudflareOutputFile}`);
   console.log(`High EQ: ${highEq.length}, Roast: ${roast.length}`);
 }
 

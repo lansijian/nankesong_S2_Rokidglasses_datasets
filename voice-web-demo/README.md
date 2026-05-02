@@ -5,6 +5,7 @@
 完整部署文档见：
 
 - [EdgeOne Pages 部署说明](</e:/创造/南客松S2/Agent/voice-web-demo/docs/DEPLOY_EDGEONE_PAGES.md>)
+- [Cloudflare Pages 部署说明](</e:/创造/南客松S2/Agent/voice-web-demo/docs/DEPLOY_CLOUDFLARE_PAGES.md>)
 
 ## 能力范围
 
