@@ -4,6 +4,7 @@ import path from "node:path";
 const root = path.resolve(process.cwd(), "..");
 const outputDir = path.resolve(process.cwd(), "cloud-functions", "_data");
 const outputFile = path.join(outputDir, "knowledge.json");
+const edgeoneApiKnowledgeFile = path.resolve(process.cwd(), "cloud-functions", "api", "knowledge.js");
 const cloudflareOutputDir = path.resolve(process.cwd(), "functions", "_data");
 const cloudflareOutputFile = path.join(cloudflareOutputDir, "knowledge.js");
 
@@ -187,9 +188,15 @@ async function main() {
 
   await fs.mkdir(outputDir, { recursive: true });
   await fs.mkdir(cloudflareOutputDir, { recursive: true });
+  await fs.mkdir(path.dirname(edgeoneApiKnowledgeFile), { recursive: true });
   await fs.writeFile(
     outputFile,
     JSON.stringify(payload, null, 2),
+    "utf8"
+  );
+  await fs.writeFile(
+    edgeoneApiKnowledgeFile,
+    `const knowledge = ${JSON.stringify(payload, null, 2)};\nexport default knowledge;\n`,
     "utf8"
   );
   await fs.writeFile(

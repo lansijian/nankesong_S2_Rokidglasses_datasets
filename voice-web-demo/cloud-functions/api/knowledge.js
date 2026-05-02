@@ -1,4 +1,4 @@
-{
+const knowledge = {
   "generatedAt": "2026-05-02T18:23:37.886Z",
   "counts": {
     "highEq": 140,
@@ -2179,4 +2179,5 @@
       "score": 7
     }
   ]
-}
+};
+export default knowledge;

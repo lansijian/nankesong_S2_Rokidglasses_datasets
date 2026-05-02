@@ -1,11 +1,4 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const knowledgePath = path.resolve(__dirname, "..", "_data", "knowledge.json");
-
-let knowledgeCache;
+import knowledge from "./knowledge.js";
 
 const REGION_STYLES = {
   default: "标准普通话，简洁、自然、不过度表演。",
@@ -82,7 +75,6 @@ export async function onRequestPost({ request, env }) {
       );
     }
 
-    const knowledge = await loadKnowledge();
     const snippets = retrieveKnowledge({
       mode,
       text,
@@ -141,13 +133,6 @@ export async function onRequestGet() {
     service: "chat",
     message: "POST text to this endpoint."
   });
-}
-
-async function loadKnowledge() {
-  if (knowledgeCache) return knowledgeCache;
-  const raw = await fs.readFile(knowledgePath, "utf8");
-  knowledgeCache = JSON.parse(raw);
-  return knowledgeCache;
 }
 
 function retrieveKnowledge({ mode, text, region, items }) {
